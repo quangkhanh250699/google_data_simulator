@@ -1,7 +1,7 @@
 # Author: Truong Quang Khanh
 # Institute: Hanoi University of Science and Technology
 
-from core.task.task import Task
+from task.task import Task
 
 __all__ = [
     'Task'

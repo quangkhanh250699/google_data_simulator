@@ -2,32 +2,33 @@
 # Institute: Hanoi University of Science and Technology
 
 class Machine:
-    def __init__(self, id, cpu, memory, disk=1):
+    def __init__(self, machine_id, cpu, memory, disk=1):
         """
 
         Parameters
         ----------
-        cpu: the normalized cpu value of the machine
-        memory: the normalized memory value of the machine
-        disk: the disk space of the machine
+        machine_id: str
+        cpu: float
+        memory: float
+        disk: float
 
         Returns
         -------
         Machine
         """
 
-        self.__id = id
+        self.__machine_id = machine_id
         self.cpu = cpu
         self.memory = memory
         self.disk = disk
 
     @property
-    def id(self):
-        return self.__id
+    def machine_id(self):
+        return self.__machine_id
 
-    @id.setter
-    def id(self):
-        raise Exception("Cannot assign value for id after creating")
+    @machine_id.setter
+    def machine_id(self):
+        raise Exception("Cannot assign value for machine_id after creating")
 
     @property
     def cpu(self):

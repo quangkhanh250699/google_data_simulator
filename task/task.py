@@ -19,13 +19,15 @@ class Task:
         coming_time: float
 
         """
+
         self.task_id = task_id
         self.cpu_request = cpu_request
         self.memory_request = memory_request
         self.disk_request = disk_request
         self.coming_time = coming_time
-        self.completion = -1
-        self.priority = -1
+        self.completion = 0
+        self.execution_time = 0
+        self.priority = 0
 
     @property
     def task_id(self):
@@ -75,6 +77,23 @@ class Task:
         if coming_time < 0:
             raise ValueError("coming_time cannot be negative value")
         self.__coming_time = coming_time
+
+    @property
+    def completion(self):
+        return self.__completion
+
+    @completion.setter
+    def completion(self, completion: float):
+        self.__completion = min(completion, 1)
+        self.__completion = max(completion, 0)
+
+    @property
+    def execution_time(self):
+        return self.__execution_time
+
+    @execution_time.setter
+    def execution_time(self, execution_time: float):
+        self.__execution_time = max(execution_time, 0)
 
 
 if __name__ == '__main__':

@@ -1,12 +1,22 @@
 # Author: Truong Quang Khanh
 # Institute: Hanoi University of Science and Technology
 
+from typing import List
+
+from machine import Machine
+
+
 class Datacenter:
     """
     This class denote a datacenter with list of virtual machines
     """
 
-    def __init__(self, vm_list=None):
+    def __init__(self, vm_list=List[Machine]):
+        """
+        Parameters
+        ----------
+        vm_list
+        """
         self.__vm_list = vm_list
         
     @property
