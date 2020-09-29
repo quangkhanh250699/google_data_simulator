@@ -15,6 +15,8 @@ class Simulator:
     This class simulate running process in a datacenter
     """
 
+    task_source: str
+
     def __init__(self, datacenter: Datacenter, broker: Broker, simulation_model: SimulationModel):
         self.clock = 0
         self.broker = broker
@@ -63,7 +65,8 @@ class Simulator:
         """
         self.__update_state()
         self.broker.submit_machines(self.datacenter.vm_list)
-        coming_tasks = load_coming_tasks(interval_time=self.interval_time)
+        coming_tasks = load_coming_tasks(interval_time=self.interval_time,
+                                         task_source=self.task_source)
 
         while True:
             try:
@@ -94,12 +97,19 @@ class Simulator:
 
 
 if __name__ == '__main__':
-    vm_list = load_machines()
+    # Source of data
+    machine_source = 'data/machine_attr.csv'
+    task_source = 'data/task_info.csv'
+
+    # Create instances
+    vm_list = load_machines(machine_source)
     datacenter = Datacenter(vm_list=vm_list)
     scheduler = SimpleScheduler()
     broker = Broker(scheduler=scheduler)
     simulation_model = SimulationModel()
-
     simulator = Simulator(datacenter=datacenter, broker=broker, simulation_model=simulation_model)
+    simulator.task_source = task_source
+
+    # Simulate datacenter
     simulator.run()
     simulator.print_log()

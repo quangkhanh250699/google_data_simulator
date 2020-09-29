@@ -10,6 +10,9 @@ from utilities import Noise
 
 class SimulationModel:
 
+    def __init__(self):
+        pass 
+
     def update(self,
                running_tasks: List[Task],
                machines: List[Machine],
@@ -27,3 +30,6 @@ class SimulationModel:
             else:
                 task.execution_time += interval_time
                 task.completion = completion
+
+    def __update_single_machine(self, tasks, machines, noise, interval_time):
+        pass
